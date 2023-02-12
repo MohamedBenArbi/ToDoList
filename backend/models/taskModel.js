@@ -12,11 +12,8 @@ const taskSchema = mongoose.Schema({
      },
      priority : {
         type:Number,
-     },
-     user : {
-        type : mongoose.Types.ObjectId,
-        required : true
      }
+     
 
      
 
