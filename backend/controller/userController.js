@@ -1,23 +1,28 @@
 const express = require('express')
+const asyncHandler = require('express-async-handler')
 
-const getUser = (req,res)=>{
+
+
+const getUser = asyncHandler(async (req,res)=>{
     res.json({"Message" : "get User"})
-}
+})
 
 
-const postUser = (req,res)=>{
+const postUser = asyncHandler (async (req,res)=>{
     res.json({"Message" : "post User"})
-}
+   
+
+})
 
 
-const putUser = (req,res)=>{
+const putUser = asyncHandler (async (req,res)=>{
     res.json({"Message" : `update user ${req.params.id}`})
-}
+})
 
 
-const deleteUser = (req,res)=>{
+const deleteUser = asyncHandler(async (req,res)=>{
     res.json({"Message" : `delete user ${req.params.id}`})
-}
+})
 
 module.exports = {
     getUser,
