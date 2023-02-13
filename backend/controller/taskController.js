@@ -11,14 +11,17 @@ const getTask = asyncHandler(async (req,res)=>{
 
 const addTask =  asyncHandler(async(req,res)=>{
 
-   const {title,description,priority} = req.body
 
 
-    if(!title ){
+    if(!req.body.title ){
            res.status(400)
            throw new Error('Please enter a title')
     }
-       const task =  await Task.create({user : req.user.id,title,description,priority})
+       const task =  await Task.create(
+          {
+            user : req.user.id,
+            title : req.body.title
+        })
 
        if(task){
         res.json(task)
