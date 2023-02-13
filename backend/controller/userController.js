@@ -71,7 +71,9 @@ const login = asyncHandler (async (req,res)=>{
 })
 
 const getme = asyncHandler (async (req,res)=>{
-    res.json({"Message" : "login"})
+    const user = await userModel.findById(req.user.id)
+    
+    res.json(user)
 })
 
 const generateToken = (id) =>{
