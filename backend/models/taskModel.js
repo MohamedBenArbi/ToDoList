@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const taskSchema = mongoose.Schema({
-   user : {
-      type: mongoose.Types.ObjectId,
-      required : true,
+     use : {
+      type : mongoose.Types.ObjectId,
+      required : true , 
       ref : 'User'
      },
      title : {
@@ -16,8 +16,7 @@ const taskSchema = mongoose.Schema({
      },
      priority : {
         type:Number,
-     },
-     
+     }
      
 
      
