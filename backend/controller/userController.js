@@ -1,6 +1,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
 const userModel = require('../models/userModel')
+const bcrypt = require('bcrypt')
 
 
 
