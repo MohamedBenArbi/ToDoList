@@ -1,32 +1,45 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
+const userModel = require('../models/userModel')
 
 
 
-const getUser = asyncHandler(async (req,res)=>{
-    res.json({"Message" : "get User"})
+const register = asyncHandler(async (req,res)=>{
+    
+    const {name,email,password} = req.body
+
+    if(!name || !email || !password){
+        res.status(400)
+        throw new Error("Please enter all infos")
+    }
+
+    const user = await userModel.findOne({email})
+
+    if(user){
+        res.status(400)
+        throw new Error("email already used")
+    }
+        
+        const newUser = await userModel.create({name,email,password})
+         
+        if(newUser){
+            res.status(201).json(newUser)
+        }
+
 })
 
 
-const postUser = asyncHandler (async (req,res)=>{
-    res.json({"Message" : "post User"})
-   
-
+const login = asyncHandler (async (req,res)=>{
+    res.json({"Message" : "login"})
 })
 
-
-const putUser = asyncHandler (async (req,res)=>{
-    res.json({"Message" : `update user ${req.params.id}`})
+const getme = asyncHandler (async (req,res)=>{
+    res.json({"Message" : "login"})
 })
 
-
-const deleteUser = asyncHandler(async (req,res)=>{
-    res.json({"Message" : `delete user ${req.params.id}`})
-})
 
 module.exports = {
-    getUser,
-    postUser,
-    putUser,
-    deleteUser
+    register,
+    login,
+    getme
 }

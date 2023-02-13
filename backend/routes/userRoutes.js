@@ -1,15 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const {getUser,postUser,putUser,deleteUser} = require('../controller/userController')
+const {register, login, getme} = require('../controller/userController')
 
 
-router.route('/')
-  .get(getUser)
-  .post(postUser)
+router.route('/register').post(register)
+router.route('/login').post(login)
+router.route('/getme').get(getme)
 
-router.route('/:id')
-  .put(putUser)
-  .delete(deleteUser)
 
 
 
