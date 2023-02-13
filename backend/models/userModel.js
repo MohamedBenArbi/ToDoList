@@ -13,6 +13,7 @@ const taskSchema = mongoose.Schema({
      },
      password : {
         type:String,
+        required : [true,'password is required']
      }
      
 
