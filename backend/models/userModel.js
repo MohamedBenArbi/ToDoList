@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const taskSchema = mongoose.Schema({
+const userShema = mongoose.Schema({
 
      name : {
         type : String,
@@ -20,4 +20,4 @@ const taskSchema = mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('Task',taskSchema)
+module.exports = mongoose.model('User',userShema)
