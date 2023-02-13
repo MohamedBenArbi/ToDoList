@@ -2,6 +2,7 @@ const express = require('express')
 const asyncHandler = require('express-async-handler')
 const userModel = require('../models/userModel')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 
 
@@ -21,7 +22,9 @@ const register = asyncHandler(async (req,res)=>{
         throw new Error("email already used")
     }
         
-        const newUser = await userModel.create({name,email,password})
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = await userModel.create({name,email,password:hashedPassword})
          
         if(newUser){
             res.status(201).json(newUser)
