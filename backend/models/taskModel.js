@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 
 const taskSchema = mongoose.Schema({
-
+   user : {
+      type: mongoose.Types.ObjectId,
+      required : true,
+      ref : 'User'
+     },
      title : {
         type : String,
         required :  [true ,'Tile is required']
@@ -12,7 +16,8 @@ const taskSchema = mongoose.Schema({
      },
      priority : {
         type:Number,
-     }
+     },
+     
      
 
      
