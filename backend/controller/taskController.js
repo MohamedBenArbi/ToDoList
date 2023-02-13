@@ -4,12 +4,12 @@ const Task = require('../models/taskModel')
 
 
 const getTask = asyncHandler(async (req,res)=>{
-    const goals = await Task.find() 
+    const goals = await Task.find({user:req.user.id}) 
     res.json(goals)
 })
 
 
-const postTask =  asyncHandler(async(req,res)=>{
+const addTask =  asyncHandler(async(req,res)=>{
 
    const {title,description,priority} = req.body
 
@@ -18,7 +18,7 @@ const postTask =  asyncHandler(async(req,res)=>{
            res.status(400)
            throw new Error('Please enter a title')
     }
-       const task =  await Task.create({title,description,priority})
+       const task =  await Task.create({user : req.user.id,title,description,priority})
 
        if(task){
         res.json(task)
@@ -61,7 +61,7 @@ const deleteTask = asyncHandler(async (req,res)=>{
 )
 module.exports = {
     getTask,
-    postTask,
+    addTask,
     putTask,
     deleteTask
 }

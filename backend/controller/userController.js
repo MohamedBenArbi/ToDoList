@@ -26,7 +26,6 @@ const register = asyncHandler(async (req,res)=>{
 
         const user = await userModel.create({name,email,password:hashedPassword})
 
-        token = jwt.sign({id},process.env.JWT_SECRET)
          
         if(user){
             res.status(201).json({
